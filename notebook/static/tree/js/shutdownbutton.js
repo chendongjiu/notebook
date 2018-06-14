@@ -32,7 +32,7 @@ define([
         $("button#shutdown").click(function () {
             dialog.modal({
                 title: i18n.msg._("Quit"),
-                body: i18n.msg._("Are you sure to quit and close server?"),
+                body: i18n.msg._("Are you sure you want to quit and SHUT DOWN Jupyter?"),
                 default_button: "Cancel",
                 buttons: {
                     Cancel: {},

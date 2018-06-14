@@ -3,8 +3,15 @@
 
 define([
     'jquery',
+    'base/js/dialog',
+    'base/js/i18n',
     'base/js/utils',
-], function($, utils){
+], function (
+    $,
+    dialog,
+    i18n,
+    utils
+) {
     "use strict";
 
     var LoginWidget = function (selector, options) {
@@ -21,10 +28,23 @@ define([
     LoginWidget.prototype.bind_events = function () {
         var that = this;
         this.element.find("button#logout").click(function () {
-            window.location = utils.url_path_join(
-                that.base_url,
-                "logout"
-            );
+            dialog.modal({
+                title: i18n.msg._("Logout"),
+                body: i18n.msg._("Are you sure you want to logout?"),
+                default_button: "Cancel",
+                buttons: {
+                    Cancel: {},
+                    Logout: {
+                        class: "btn-danger",
+                        click: function () {
+                            window.location = utils.url_path_join(
+                                that.base_url,
+                                "logout"
+                            );
+                        }
+                    }
+                }
+            });
         });
         this.element.find("button#login").click(function () {
             window.location = utils.url_path_join(
