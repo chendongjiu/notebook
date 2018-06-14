@@ -35,7 +35,7 @@ define([
                 buttons: {
                     Cancel: {},
                     Logout: {
-                        class: "btn-danger",
+                        class: "btn-warning",
                         click: function () {
                             window.location = utils.url_path_join(
                                 that.base_url,
