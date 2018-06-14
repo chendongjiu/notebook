@@ -6,12 +6,12 @@ define([
     'base/js/dialog',
     'base/js/i18n',
     'base/js/utils'
-], function(
+], function (
     $,
     dialog,
     i18n,
     utils
-){
+) {
     "use strict";
 
     function display_shutdown_dialog() {
@@ -30,17 +30,20 @@ define([
     function activate() {
         // Add shutdown button
         $("button#shutdown").click(function () {
-            utils.ajax(utils.url_path_join(
-                utils.get_body_data("baseUrl"),
-                "api",
-                "shutdown"
-            ), {
-                type: "POST",
-                success: display_shutdown_dialog,
-                error: function (error) {
-                    console.log(error);
-                }
-            });
+            var confirm_message = confirm("Are you sure to quit?");
+            if(confirm_message === true) {
+                utils.ajax(utils.url_path_join(
+                    utils.get_body_data("baseUrl"),
+                    "api",
+                    "shutdown"
+                ), {
+                    type: "POST",
+                    success: display_shutdown_dialog,
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
         });
     }
 
