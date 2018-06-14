@@ -30,20 +30,31 @@ define([
     function activate() {
         // Add shutdown button
         $("button#shutdown").click(function () {
-            var confirm_message = confirm("Are you sure to quit?");
-            if(confirm_message === true) {
-                utils.ajax(utils.url_path_join(
-                    utils.get_body_data("baseUrl"),
-                    "api",
-                    "shutdown"
-                ), {
-                    type: "POST",
-                    success: display_shutdown_dialog,
-                    error: function (error) {
-                        console.log(error);
+            dialog.modal({
+                title: i18n.msg._("Quit"),
+                body: i18n.msg._("Are you sure to quit and close server?"),
+                default_button: "Cancel",
+                buttons: {
+                    Cancel: {},
+                    Quit: {
+                        class: "btn-danger",
+                        click: function () {
+                            utils.ajax(utils.url_path_join(
+                                utils.get_body_data("baseUrl"),
+                                "api",
+                                "shutdown"
+                            ), {
+                                type: "POST",
+                                success: display_shutdown_dialog,
+                                error: function (error) {
+                                    console.log(error);
+                                }
+                            });
+                        }
                     }
-                });
-            }
+                }
+            });
+
         });
     }
 
