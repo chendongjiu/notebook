@@ -1,13 +1,12 @@
 FROM ubuntu:16.04
 
-WORKDIR /data/notebook
-
 ADD . /data
+
+WORKDIR /data
 
 RUN apt update && \
 apt install python3 -y && \
 apt install python3-pip -y && \
-#curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - && \
 apt install nodejs -y && \
 apt install npm -y && \
 apt install git -y && \
