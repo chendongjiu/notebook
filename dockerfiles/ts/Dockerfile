@@ -11,19 +11,19 @@ apt install python3-pip -y && \
 apt install nodejs -y && \
 apt install npm -y && \
 apt install git -y && \
-mkdir $HOME/data && \
+mkdir $HOME/run_dir && \
 cp /usr/bin/nodejs /usr/bin/node
 
 RUN apt install r-base -y
 
 RUN apt-get install libzmq3-dev libssl-dev libcurl4-openssl-dev -y
 
-RUN pip3 install . && \
-pip3 install keras && pip3 install xgboost && \
+RUN pip3 install . -i https://pypi.tuna.tsinghua.edu.cn/simple some-package && \
+pip3 install keras -i https://pypi.tuna.tsinghua.edu.cn/simple some-package && pip3 install xgboost -i https://pypi.tuna.tsinghua.edu.cn/simple some-package && \
 jupyter notebook --generate-config && echo "c.NotebookApp.ip='*'" >> ~/.jupyter/jupyter_notebook_config.py && \
 echo 'c.NotebookApp.open_browser = False' >> ~/.jupyter/jupyter_notebook_config.py && \
 echo 'c.NotebookApp.port = 8888' >> ~/.jupyter/jupyter_notebook_config.py && \
-echo "c.NotebookApp.base_project_url = '$HOME/data'" >> ~/.jupyter/jupyter_notebook_config.py
+echo "c.NotebookApp.base_project_url = '$HOME/run_dir'" >> ~/.jupyter/jupyter_notebook_config.py
 
 RUN Rscript installr.R
 
