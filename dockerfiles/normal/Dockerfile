@@ -13,7 +13,8 @@ RUN apt update && apt install -y \
 
 RUN cp /usr/bin/nodejs /usr/bin/node
 
-RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple . \
+RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple .
+
 RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple \
     keras \
     xgboost

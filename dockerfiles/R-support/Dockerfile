@@ -21,7 +21,8 @@ RUN apt install -y \
     libssl-dev \
     libcurl4-openssl-dev
 
-RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple . \
+RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple .
+
 RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple \
     keras \
     xgboost
