@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM python:3.6.5
 
 ADD . /jupyter_base
 
@@ -8,7 +8,6 @@ RUN apt update && apt install -y \
     python3 \
     python3-pip \
     nodejs \
-    npm \
     git
 
 RUN cp /usr/bin/nodejs /usr/bin/node
